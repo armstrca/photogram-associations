@@ -15,7 +15,7 @@ class Like < ApplicationRecord
   validates(:photo_id, { 
     :uniqueness => { :scope => [:fan_id] }
   })
-
+  # debugger
   # Association accessor methods to define:
   
   ## Direct associations
@@ -25,6 +25,7 @@ class Like < ApplicationRecord
   # Like#photo: returns a row from the photo table associated to this like by the photo_id column
 
   belongs_to(:fan, :class_name => "User", :foreign_key => "username")
+
   # def fan
   #   my_fan_id = self.fan_id
 
@@ -36,6 +37,7 @@ class Like < ApplicationRecord
   # end
 
   belongs_to(:photo, :class_name => "Photo", :foreign_key => "photo_id")
+
   # def photo
   #   my_photo_id = self.photo_id
 

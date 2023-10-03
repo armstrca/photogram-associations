@@ -16,7 +16,7 @@ class User < ApplicationRecord
     :presence => true,
     :uniqueness => { :case_sensitive => false },
   })
-
+  # debugger
   # Association accessor methods to define:
   
   ## Direct associations
@@ -68,6 +68,7 @@ class User < ApplicationRecord
 
 
   has_many(:comments, :class_name => "Comment", :foreign_key => "author_id")
+
   # def comments
   #   my_id = self.id
 
@@ -77,6 +78,7 @@ class User < ApplicationRecord
   # end
 
   has_many(:own_photos, :class_name => "Photo", :foreign_key => "owner_id")
+
   # def own_photos
   #   my_id = self.id
 
@@ -86,6 +88,7 @@ class User < ApplicationRecord
   # end
 
   has_many(:likes, :class_name => "Like", :foreign_key => "fan_id")
+
   # def likes
   #   my_id = self.id
 
@@ -94,7 +97,9 @@ class User < ApplicationRecord
   #   return matching_likes
   # end
 
+
   has_many(:liked_photos, :through => "Photo", :source => "likes")
+
   # def liked_photos
   #   my_likes = self.likes
     
@@ -110,6 +115,7 @@ class User < ApplicationRecord
   # end
 
   has_many(:commented_photos, :through => "Photo", :source => "comments")
+
   # def commented_photos
   #   my_comments = self.comments
     
@@ -127,6 +133,7 @@ class User < ApplicationRecord
   # end
 
   has_many(:sent_follow_requests, :class_name => "Follow_request", :foreign_key => "sender_id")
+
   # def sent_follow_requests
   #   my_id = self.id
 
@@ -145,7 +152,7 @@ class User < ApplicationRecord
   #   return matching_follow_requests
   # end
 
-  has_many(:accepted_sent_follow_requests, :class_name => "Follow_request", :foreign_key => "sender_id" :status => "accepted")
+  has_many(:accepted_sent_follow_requests, :class_name => "Follow_request", :foreign_key => "sender_id", :status => "accepted")
 
   # def accepted_sent_follow_requests
   #   my_sent_follow_requests = self.sent_follow_requests
@@ -155,7 +162,7 @@ class User < ApplicationRecord
   #   return matching_follow_requests
   # end
 
-  has_many(:accepted_received_follow_requests, :class_name => "Follow_request", :foreign_key => "recipient_id" :status => "accepted")
+  has_many(:accepted_received_follow_requests, :class_name => "Follow_request", :foreign_key => "recipient_id", :status => "accepted")
 
   # def accepted_received_follow_requests
   #   my_received_follow_requests = self.received_follow_requests

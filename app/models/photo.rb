@@ -14,7 +14,7 @@
 
 class Photo < ApplicationRecord
   validates(:poster, { :presence => true })
-
+  # debugger
   # Association accessor methods to define:
   
   ## Direct associations
@@ -31,6 +31,7 @@ class Photo < ApplicationRecord
 
 
   belongs_to(:poster, :class_name => "User", :foreign_key => "owner_id")
+
   # def poster
   #   my_owner_id = self.owner_id
 
@@ -43,6 +44,7 @@ class Photo < ApplicationRecord
 
 
   has_many(:comments, :class_name => "Comment", :foreign_key => "photo_id")
+
   # def comments
   #   my_id = self.id
 
@@ -52,6 +54,7 @@ class Photo < ApplicationRecord
   # end
 
   has_many(:likes, :class_name => "Like", :foreign_key => "photo_id")
+
   # def likes
   #   my_id = self.id
 
@@ -62,6 +65,7 @@ class Photo < ApplicationRecord
 
 
   has_many(:fans, :through => "likes", :source => "fan")
+
   # def fans
   #   my_likes = self.likes
     
@@ -77,17 +81,18 @@ class Photo < ApplicationRecord
   # end
 
   has_one(:fan_list, :through => "likes", :source => "fan")
-  def fan_list
-    my_fans = self.fans
 
-    array_of_usernames = Array.new
+  # def fan_list
+  #   my_fans = self.fans
 
-    my_fans.each do |a_user|
-      array_of_usernames.push(a_user.username)
-    end
+  #   array_of_usernames = Array.new
 
-    formatted_usernames = array_of_usernames.to_sentence
+  #   my_fans.each do |a_user|
+  #     array_of_usernames.push(a_user.username)
+  #   end
 
-    return formatted_usernames
-  end
+  #   formatted_usernames = array_of_usernames.to_sentence
+
+  #   return formatted_usernames
+  # end
 end
